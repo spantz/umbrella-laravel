@@ -13,17 +13,10 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @route /
-     * @method GET
-     * @param Request $request
-     * @param LinkRepository $repository
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
+        dd('home');
+
         return view('welcome');
     }
 }

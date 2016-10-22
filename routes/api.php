@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\HomeController;
+use App\Http\Controllers;
 use App\Http\MiddelWare\VerifyAPIToken;
 
 /*
@@ -16,3 +16,18 @@ use App\Http\MiddelWare\VerifyAPIToken;
 */
 
 Route::get('login', 'API\CredentialController@login');
+
+// Route::get('/home', 'HomeController@index');
+
+// Route::group(['middleware' => 'auth'], function() {
+// 	Route::get('/', 'HomeController@index');
+
+// 	Route::group(['prefix' => '/api/v1'], function() {
+// 		Route::post('/login', 'API\CredentialController@login');
+// 		Route::post('/register', 'API\CredentialController@registerUser');
+
+// 		Route::group(['middleware' => VerifyAPIToken::class], function () {
+// 			Route::delete('/logout', 'API\CredentialController@logout');
+// 		});
+// 	});
+// });

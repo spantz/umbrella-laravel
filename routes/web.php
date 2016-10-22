@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Http\Controllers;
+use App\Http\MiddelWare\VerifyAPIToken;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +15,5 @@
 |
 */
 
-use App\Http\MiddelWare\VerifyAPIToken;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('home', 'HomeController@index');
