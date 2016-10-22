@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('about', function () {
+    return view('about');
+});
+
+Route::get('features', function () {
+    return view('features');
+});
+
+Route::get('demo', function () {
+    return view('demo');
+});
+
+Route::get('contact-us', function () {
+    return view('contact');
+});
