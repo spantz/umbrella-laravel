@@ -7,8 +7,19 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class CredentialController
+class CredentialController extends APIController
 {
+
+	public function registerUser(Request $request, UserAndTokenRegistrar $registrar)
+	{
+		$this->validate($request, [
+			'name' => 'required|max:255',
+			'email' => 'required|email|max:255|unique:users',
+			'password' => 'required|min:6',
+			]);
+
+		return $this->successResponse('Success', $registrar->createUserAndAuthTokenFromRequest($request));
+}	
 
 	public function login(Request $request, Authmanager $auth)
 	{
@@ -24,7 +35,14 @@ class CredentialController
 					$request->user(),
 					$request->ip(),
 					$request->header('User-Agent')
-					)
-				);
-	}	
+			)
+		);
+	}
+
+	public function logout($request $request, AuthTokenRepository $repository)
+	{
+		$user = $request->user();
+		$repository->deleteAuthToken($user->getAuthToken());
+		return $this->successResponse();
+	}
 }
