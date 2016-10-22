@@ -19,7 +19,7 @@ class CredentialController extends APIController
 			]);
 
 		return $this->successResponse('Success', $registrar->createUserAndAuthTokenFromRequest($request));
-}	
+	}
 
 	public function login(Request $request, Authmanager $auth)
 	{
