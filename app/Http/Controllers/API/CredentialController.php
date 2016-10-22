@@ -6,8 +6,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
-class CredentialController extends APIController
+class CredentialController
 {
 
 	public function registerUser(Request $request, UserAndTokenRegistrar $registrar)
@@ -21,9 +22,11 @@ class CredentialController extends APIController
 		return $this->successResponse('Success', $registrar->createUserAndAuthTokenFromRequest($request));
 	}
 
-	public function login(Request $request, Authmanager $auth)
+	public function login(Request $request)
 	{
-		if(!$auth->once['email' => $request->email, 'password' => $request->password]))
+		dd('hello');
+
+		if(!$auth->once(['email' => $request->email, 'password' => $request->password]))
 		{
 			return $this->errorResponse('Error', ['Invalid credentials.']);
 		}
@@ -39,7 +42,7 @@ class CredentialController extends APIController
 		);
 	}
 
-	public function logout($request $request, AuthTokenRepository $repository)
+	public function logout(Request $request, AuthenticationManger $auth)
 	{
 		$user = $request->user();
 		$repository->deleteAuthToken($user->getAuthToken());
