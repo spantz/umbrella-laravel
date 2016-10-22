@@ -11,20 +11,22 @@ use Illuminate\Http\Request;
 class CredentialController
 {
 
-	public function registerUser(Request $request, UserAndTokenRegistrar $registrar)
+	public function registerUser(Request $request)
 	{
+		dd('register user');
+
 		$this->validate($request, [
 			'name' => 'required|max:255',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|min:6',
 			]);
 
-		return $this->successResponse('Success', $registrar->createUserAndAuthTokenFromRequest($request));
+		return $this->successResponse('Success');
 	}
 
 	public function login(Request $request)
 	{
-		dd('hello');
+		dd('login');
 
 		if(!$auth->once(['email' => $request->email, 'password' => $request->password]))
 		{
@@ -42,8 +44,10 @@ class CredentialController
 		);
 	}
 
-	public function logout(Request $request, AuthenticationManger $auth)
+	public function logout(Request $request)
 	{
+		dd('logout');
+
 		$user = $request->user();
 		$repository->deleteAuthToken($user->getAuthToken());
 		return $this->successResponse();

@@ -16,18 +16,14 @@ use App\Http\MiddelWare\VerifyAPIToken;
 */
 
 Route::get('login', 'API\CredentialController@login');
+Route::get('register', 'API\CredentialController@registerUser');
+Route::get('logout', 'API\CredentialController@logout');
+
 
 // Route::get('/home', 'HomeController@index');
 
-// Route::group(['middleware' => 'auth'], function() {
-// 	Route::get('/', 'HomeController@index');
-
-// 	Route::group(['prefix' => '/api/v1'], function() {
-// 		Route::post('/login', 'API\CredentialController@login');
-// 		Route::post('/register', 'API\CredentialController@registerUser');
-
-// 		Route::group(['middleware' => VerifyAPIToken::class], function () {
-// 			Route::delete('/logout', 'API\CredentialController@logout');
-// 		});
-// 	});
-// });
+/*Route::group(['middleware' => 'auth'], function() {
+		Route::group(['middleware' => VerifyAPIToken::class], function () {
+			Route::get('/logout', 'API\CredentialController@logout');
+		});
+});*/
